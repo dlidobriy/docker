@@ -36,4 +36,10 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          
+      - name: Send message to Telegram
+        uses: Lukasss93/telegram-action@v2
+        env:
+                TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+                TELEGRAM_CHAT: ${{ secrets.TELEGRAM_CHAT }}
       
