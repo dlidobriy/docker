@@ -39,7 +39,7 @@ jobs:
 
         
       - name: send telegram success message
-        if: success()
+        if: ${{ success() }}
         uses: appleboy/telegram-action@master
         with:
           to: "-1002092401069"
@@ -54,7 +54,7 @@ jobs:
   
 
       - name: send telegram failure message
-        if: failure()
+        if: ${{ failure() }}
         uses: appleboy/telegram-action@master
         with:
           to: "-1002092401069"
