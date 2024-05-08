@@ -38,7 +38,7 @@ jobs:
       #     labels: ${{ steps.meta.outputs.labels }}
 
         
-      - name: send telegram message on push
+      - name: send telegram success message
         if: success()
         uses: appleboy/telegram-action@master
         with:
@@ -53,7 +53,7 @@ jobs:
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
   
 
-      - name: send telegram message on push
+      - name: send telegram failure message
         if: failure()
         uses: appleboy/telegram-action@master
         with:
