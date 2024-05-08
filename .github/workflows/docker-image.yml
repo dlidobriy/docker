@@ -70,7 +70,7 @@ jobs:
         with: 
          fetch-depth: 0
          env: 
-        token: ${{ secrets.GITLAB_TOKEN }}
+         token: ${{ secrets.GITLAB_TOKEN }}
 
       - name: Push To Gitlab
         run:  
