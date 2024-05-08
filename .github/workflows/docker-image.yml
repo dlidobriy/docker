@@ -45,7 +45,22 @@ jobs:
           to: "-1002092401069"
           token: "7198702423:AAFrDqMlsKVoFZmaTU1RxRDeJOns8LJ6rP4"
           message: |
-            ${{ github.actor }} created commit:
+            ${{ github.actor }} created commit: ✅✅✅
+            Commit message: ${{ github.event.commits[0].message }}
+            
+            Repository: ${{ github.repository }}
+            
+            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+  
+
+      - name: send telegram message on push
+          if{{ failed }}
+        uses: appleboy/telegram-action@master
+        with:
+          to: "-1002092401069"
+          token: "7198702423:AAFrDqMlsKVoFZmaTU1RxRDeJOns8LJ6rP4"
+          message: |
+            ${{ github.actor }} created commit: ❌❌❌
             Commit message: ${{ github.event.commits[0].message }}
             
             Repository: ${{ github.repository }}
