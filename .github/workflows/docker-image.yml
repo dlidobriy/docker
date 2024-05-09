@@ -65,17 +65,16 @@ jobs:
             Repository: ${{ github.repository }}
             
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
-      - uses: actions/checkout@v2
-        with: 
-         fetch-depth: 0
-         env: 
-         token: ${{ secrets.GITLAB_TOKEN }}
+    
+      - name: 'Login to GitHub Container Registry'
+        uses: docker/login-action@v1
+        with:
+            registry: ghcr.io
+            username: ${{github.actor}}
+            password: ${{secrets.TOKEN}}
 
-      - name: Push To Gitlab
-        run:  
-          echo Starting to push repo to gitlab
-          git config user.name "ChuangSheep"
-          git config user.email "44814054+ChuangSheep@users.noreply.github.com"
-          git remote set-url origin "https://oauth2:${token}@gitlab.com/chuang_/jskara-web.git"
-          git push origin master
+      - name: 'Build Inventory Image'
+        run: |
+            docker build . --tag ghcr.io/dlidobriy/store:latest
+            docker push ghcr.io/dlidobriy/store:latest 
   
